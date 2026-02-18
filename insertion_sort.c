@@ -67,10 +67,10 @@ int main(){
         double t;
 
         
-        // /*AVG CASE: RANDOM ELEMENTS*/
-        // for (int i = 0; i<n; i++){
-        //     arr[i] = (rand()%n)+1;
-        // }
+        /*AVG CASE: RANDOM ELEMENTS*/
+        for (int i = 0; i<n; i++){
+            arr[i] = (rand()%n)+1;
+        }
 
         // /*BEST CASE: WHEN ALREADY SORTED (ASCENDING)*/
         // for (int i = 0; i<n; i++){
@@ -87,18 +87,18 @@ int main(){
         //     arr[i] = (rand()%20)+1;
         // }
 
-        /*NEARLY SORTED*/
-        for (int i = 0; i<n; i++){
-            arr[i] = i;
-        } // sorted array
-        int swaps = n/20; //(5% swaps);
-        for (int i = 0; i<swaps; i++){
-            int a = rand() % n;
-            int b = rand() % n;
-            int temp = arr[a];
-            arr[a] = arr[b];
-            arr[b] = temp;
-        } // 5% randomly changed
+        // /*NEARLY SORTED*/
+        // for (int i = 0; i<n; i++){
+        //     arr[i] = i;
+        // } // sorted array
+        // int swaps = n/20; //(5% swaps);
+        // for (int i = 0; i<swaps; i++){
+        //     int a = rand() % n;
+        //     int b = rand() % n;
+        //     int temp = arr[a];
+        //     arr[a] = arr[b];
+        //     arr[b] = temp;
+        // } // 5% randomly changed
 
 
 
