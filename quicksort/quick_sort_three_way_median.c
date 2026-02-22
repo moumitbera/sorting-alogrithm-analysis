@@ -1,0 +1,161 @@
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+
+typedef struct{
+    long comparisons;
+    long swaps;
+} Metrics;
+
+/*ARRAY GENERATOR*/
+void generate_random(int arr[], int n){
+    for(int i = 0; i < n; i++)
+        arr[i] = (rand() % n) + 1;
+}
+
+void generate_sorted(int arr[], int n){
+    for(int i = 0; i < n; i++)
+        arr[i] = i;
+}
+
+void generate_reverse(int arr[], int n){
+    for(int i = 0; i < n; i++)
+        arr[i] = n - i;
+}
+
+void generate_duplicates(int arr[], int n){
+    for(int i = 0; i < n; i++)
+        arr[i] = (rand() % 20) + 1;
+}
+
+void generate_nearly_sorted(int arr[], int n){
+    generate_sorted(arr, n);
+
+    int swaps = n / 20;   // 5%
+    for(int i = 0; i < swaps; i++){
+        int a = rand() % n;
+        int b = rand() % n;
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+}
+
+/* MAIN CODE: QUICK SORT */
+
+void quick_sort(int arr[], int low, int high, Metrics *m){
+
+    // base case
+    if (low >= high){
+        return;
+    }
+
+    // << FINDING THE MEDIAN >>
+    int mid = low + (high-low)/2;
+
+    m->comparisons++; // low mid
+    if(arr[low] > arr[mid]){
+        int temp = arr[mid];
+        arr[mid] = arr[low];
+        arr[low] = temp;
+        m->swaps++;
+    }
+
+    m->comparisons++; // low high
+    if(arr[low] > arr[high]){
+        int temp = arr[low];
+        arr[low] = arr[high];
+        arr[high] = temp;
+        m->swaps++;
+    }
+
+    m->comparisons++; // mid high
+    if(arr[mid] > arr[high]){
+        int temp = arr[mid];
+        arr[mid] = arr[high];
+        arr[high] = temp;
+        m->swaps++;
+    }
+
+    
+
+
+    // << BREAKING INTO THREE PARTS >>
+    int pivot = arr[mid];
+
+    int ll, hl, i; // lower limit, higher limit, iterative
+    ll = low;
+    hl = high;
+    i = low;
+
+    while (i<=hl){
+
+        m->comparisons++;
+
+        if(arr[i]<pivot){
+            int temp = arr[i];
+            arr[i] = arr[ll];
+            arr[ll] = temp;
+            i++;
+            ll++;
+            m->swaps++;
+
+        } else if (arr[i] > pivot){
+            int temp = arr[i];
+            arr[i] = arr[hl];
+            arr[hl] = temp;
+            hl--;
+            m->swaps++;
+        } else {
+            i++;
+        }
+
+    }
+    
+
+
+    quick_sort(arr, low, ll-1, m);
+    quick_sort(arr, hl+1, high, m);
+
+
+
+}
+
+int main(){
+
+    srand(time(NULL));
+    int trials = 20;
+    double total_time = 0;
+    long total_comp = 0;
+    long total_swaps = 0;
+
+    int size = 1000;
+
+    for (int i = 0; i<trials; i++){
+        Metrics m;
+        m.comparisons = 0;
+        m.swaps = 0;
+        
+        int arr[size];
+        generate_nearly_sorted(arr, size);
+
+        clock_t start, end;
+        double t;
+
+        start = clock(); // timing it
+        quick_sort(arr, 0, size-1, &m);
+        end = clock(); // close time it
+
+        t = ((double)(end-start))/CLOCKS_PER_SEC;
+
+        total_comp += m.comparisons;
+        total_swaps += m.swaps;
+        total_time += t;
+    }
+
+    printf("\nAverage for %d\nComparisons: %ld\nSwaps: %ld\nRun Time: %f\n", size, total_comp/20, total_swaps/20, (total_time/20)*1000);
+
+    
+
+}
