@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 
-# -------------------------------
-# Data
-# -------------------------------
+# data set array size
 
 n = [1000, 2000, 5000, 10000, 20000, 50000]
 
@@ -24,9 +22,7 @@ dup_time = [0.214, 0.389, 1.087, 1.881, 3.163, 5.637]
 near_time = [0.089, 0.371, 0.645, 1.626, 2.533, 5.087]
 
 
-# =====================================================
-# 1️⃣ Comparisons Graph
-# =====================================================
+# Comparisons
 
 plt.figure(figsize=(8,6))
 
@@ -50,9 +46,7 @@ plt.savefig("merge_comparisons.png", dpi=300)
 plt.savefig("graphs/merge sort/output/comparisons.png", dpi=300, bbox_inches="tight")
 
 
-# =====================================================
-# 2️⃣ Writes Graph
-# =====================================================
+# Writes
 
 plt.figure(figsize=(8,6))
 
@@ -71,9 +65,7 @@ plt.savefig("merge_writes.png", dpi=300)
 plt.savefig("graphs/merge sort/output/writes.png", dpi=300, bbox_inches="tight")
 
 
-# =====================================================
-# 3️⃣ Runtime Graph
-# =====================================================
+# Runtime
 
 plt.figure(figsize=(8,6))
 
