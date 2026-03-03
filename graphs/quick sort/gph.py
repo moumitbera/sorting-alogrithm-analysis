@@ -2,9 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 
-# ===============================
-# Create Output Folders
-# ===============================
+# folder making
 
 folders = [
     "graphs/quick_sort/last",
@@ -17,15 +15,11 @@ folders = [
 for folder in folders:
     os.makedirs(folder, exist_ok=True)
 
-# ===============================
-# Array Sizes
-# ===============================
+# data set / array size
 
 n = np.array([1000, 2000, 5000, 10000, 20000, 50000])
 
-# ===============================
-# DATA STORAGE
-# ===============================
+# store data
 
 quick_data = {
 
@@ -102,9 +96,7 @@ quick_data = {
 }
 }
 
-# ===============================
-# FUNCTION TO PLOT
-# ===============================
+# plotting func
 
 def plot_metric(pivot_name, metric_key, ylabel, save_path):
     plt.figure(figsize=(8,6))
@@ -126,9 +118,7 @@ def plot_metric(pivot_name, metric_key, ylabel, save_path):
     plt.savefig(save_path, dpi=300)
     plt.close()
 
-# ===============================
-# GENERATE 12 STRATEGY GRAPHS
-# ===============================
+# the 12 different graphs
 
 for pivot in quick_data:
     plot_metric(pivot, "comp", "Comparisons",
@@ -138,9 +128,7 @@ for pivot in quick_data:
     plot_metric(pivot, "time", "Runtime (ms)",
                 f"graphs/quick_sort/{pivot}/runtime.png")
 
-# ===============================
-# COMPARISON GRAPHS (3)
-# ===============================
+# the 3 comparisions graphs
 
 def comparison_graph(input_type, metric_key, ylabel, filename):
     plt.figure(figsize=(8,6))
