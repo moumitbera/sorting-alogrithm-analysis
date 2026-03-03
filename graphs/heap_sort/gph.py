@@ -4,9 +4,7 @@ import matplotlib.pyplot as plt
 # Input sizes
 n = [1000, 2000, 5000, 10000, 20000, 50000]
 
-# ======================
-# Comparisons
-# ======================
+# All the comparisons
 
 sorted_comp = [17583, 39159, 112126, 244460, 529074, 1455438]
 reverse_comp = [15965, 35964, 103227, 226682, 493307, 1366047]
@@ -33,9 +31,7 @@ plt.savefig("comparisons.png", dpi=300)
 plt.close()
 
 
-# ======================
-# Swaps
-# ======================
+# For swaps
 
 sorted_swaps = [9708, 21300, 60932, 131956, 282878, 773304]
 reverse_swaps = [8316, 18708, 53436, 116696, 254334, 698892]
@@ -62,9 +58,7 @@ plt.savefig("swaps.png", dpi=300)
 plt.close()
 
 
-# ======================
-# Runtime
-# ======================
+# for runtime
 
 sorted_rt = [0.097, 0.441, 1.241, 2.035, 3.748, 6.988]
 reverse_rt = [0.111, 0.334, 1.233, 2.208, 3.514, 6.431]
