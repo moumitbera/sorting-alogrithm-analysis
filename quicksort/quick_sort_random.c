@@ -75,7 +75,7 @@ void quick_sort(int arr[], int low, int high, Metrics *m){
         }
 
     }
-    m -> swaps++;
+    m -> swaps++; // counting swaps
     i++;
     temp = arr[i];
     arr[i] = arr[high];
